@@ -34,6 +34,15 @@ const routes: Array<RouteConfig> = [
      */
     component: () => import('@/components/views/DashboardView.vue'),
     children: [
+      {
+        path: '',
+        /*
+        meta: {
+          name: 'Dashboard',
+        },
+         */
+        component: () => import('@/components/dashboard/Dashboard.vue'),
+      },
     ],
   },
 

@@ -3,7 +3,7 @@ export interface RootState {
 }
 
 const state: RootState = {
-  title: '',
+  title: 'Vuetify Admin Dashboard by ClintOxx',
 };
 
 export default state;

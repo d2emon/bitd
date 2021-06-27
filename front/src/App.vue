@@ -1,8 +1,6 @@
 <template>
   <transition mode="out-in">
-    <v-app>
-      <router-view/>
-    </v-app>
+    <router-view/>
   </transition>
 </template>
 
