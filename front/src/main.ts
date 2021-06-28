@@ -16,6 +16,7 @@ import vuetify from '@/plugins/vuetify';
 // TODO: Sync store with router
 
 Vue.config.productionTip = false;
+Vue.config.devtools = true;
 
 new Vue({
   // TODO: Add i18n

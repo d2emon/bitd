@@ -32,7 +32,7 @@ const routes: Array<RouteConfig> = [
       requiresAuth: false,
     },
      */
-    component: () => import('@/components/views/DashboardView.vue'),
+    component: () => import('@/components/views/NewDashboardView.vue'),
     children: [
       {
         path: '',
@@ -41,7 +41,15 @@ const routes: Array<RouteConfig> = [
           name: 'Dashboard',
         },
          */
-        component: () => import('@/components/dashboard/Dashboard.vue'),
+        component: () => import('@/components/dashboard/CharacterSheet.vue'),
+      },
+      {
+        path: 'decisions',
+        component: () => import('@/components/dashboard/Decisions.vue'),
+      },
+      {
+        path: 'roll',
+        component: () => import('@/components/dashboard/Roll.vue'),
       },
     ],
   },
