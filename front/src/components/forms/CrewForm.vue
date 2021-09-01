@@ -17,23 +17,25 @@
                   <v-text-field
                     :readonly="readonly"
                     label="Название"
-                    :value="value.title"
+                    v-model="value.title"
                   />
                 </v-col>
                 <v-col>
                   <v-text-field
                     :readonly="readonly"
                     label="Реноме"
-                    :value="value.reputationType"
+                    v-model="value.reputationType"
                   />
                 </v-col>
               </v-row>
-              <v-row>
+              <v-row
+                v-if="value.lair"
+              >
                 <v-col>
                   <v-text-field
                     :readonly="readonly"
                     label="Логово"
-                    :value="value.lair"
+                    v-model="value.lair.description"
                   />
                 </v-col>
               </v-row>
@@ -124,6 +126,35 @@
               </v-row>
               <v-row>
                 <v-col>
+                  <v-card>
+                    <v-card-title>Охотничьи угодья</v-card-title>
+                    <v-container
+                      v-if="value.huntingGrounds && value.huntingGrounds.length"
+                    >
+                      <v-card
+                        v-for="(ground, id) in value.huntingGrounds"
+                        :key="id"
+                      >
+                        <v-text-field
+                          v-if="ground.district"
+                          :readonly="readonly"
+                          label="Район"
+                          v-model="ground.district.description"
+                        />
+                        <v-text-field
+                          :readonly="readonly"
+                          label="Угодья"
+                          v-model="ground.description"
+                        />
+                        <v-select
+                          :readonly="readonly"
+                          label="Специализация"
+                          :items="value.crewType ? value.crewType.operations : []"
+                          v-model="ground.operations"
+                        />
+                      </v-card>
+                    </v-container>
+                  </v-card>
                   <v-text-field
                     label="Охотничьи угодья"
                   />

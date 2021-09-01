@@ -1,4 +1,8 @@
 import { CrewType } from '@/helpers/crewType';
+import {
+  HuntingGround,
+  Lair,
+} from '@/helpers/lair';
 
 export type HoldType = 'WEAK' | 'STRONG';
 
@@ -11,7 +15,8 @@ export interface Crew {
   hold?: HoldType;
   reputation?: number;
   reputationType?: string;
-  lair?: string;
+  lair?: Lair;
+  huntingGrounds?: HuntingGround[];
 }
 
 export const HOLD_TYPES: { [k: string]: HoldType } = {
@@ -26,4 +31,8 @@ export const newCrew = (title: string, crewType: CrewType): Crew => ({
   tier: 0,
   hold: HOLD_TYPES.STRONG,
   reputation: 0,
+  lair: {},
+  huntingGrounds: [
+    {},
+  ],
 });

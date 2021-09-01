@@ -109,9 +109,15 @@
                   <v-card>
                     <v-card-title>Логово</v-card-title>
                     <v-container>
-                      <v-text-field
+                      <v-select
+                        label="Район"
+                        :items="districtsOptions"
+                        v-model="crew.lair.district"
+                      />
+                      <v-select
                         label="Логово"
-                        v-model="crew.lair"
+                        :items="lairs"
+                        v-model="crew.lair.description"
                       />
                     </v-container>
                   </v-card>
@@ -121,7 +127,28 @@
           </v-stepper-content>
 
           <v-stepper-content step="3">
-            3
+            <v-card>
+              <v-card-title>Охотничьи угодья</v-card-title>
+              <v-container
+                v-if="crew.huntingGrounds && crew.huntingGrounds.length"
+              >
+                <v-select
+                  label="Район"
+                  :items="districtsOptions"
+                  v-model="crew.huntingGrounds[0].district"
+                />
+                <v-select
+                  label="Угодья"
+                  :items="lairs"
+                  v-model="crew.huntingGrounds[0].description"
+                />
+                <v-select
+                  label="Специализация"
+                  :items="crew.crewType.operations"
+                  v-model="crew.huntingGrounds[0].operations"
+                />
+              </v-container>
+            </v-card>
           </v-stepper-content>
 
           <v-stepper-content step="4">
@@ -191,6 +218,7 @@ import {
 } from 'vue-property-decorator';
 import { mapState } from 'vuex';
 import { CrewType } from '@/helpers/crewType';
+import { District } from '@/helpers/district';
 import { Crew, newCrew } from '@/helpers/crew';
 
 @Component({
@@ -200,6 +228,8 @@ import { Crew, newCrew } from '@/helpers/crew';
   computed: {
     ...mapState([
       'crewTypes',
+      'districts',
+      'lairs',
       'reputationTypes',
     ]),
   },
@@ -210,13 +240,23 @@ export default class AddCrewModal extends Vue {
 
   crewTypes!: CrewType[];
 
+  districts!: District[];
+
+  lairs!: string[];
+
   reputationTypes!: string[];
 
   show = false;
 
   step = 1;
 
-  crew: Crew = {};
+  crew: Crew = {
+    lair: {},
+  };
+
+  get districtsOptions() {
+    return this.districts.map((value: District) => ({ text: value.title, value }));
+  }
 
   @Watch('show')
   onShow(value: boolean) {

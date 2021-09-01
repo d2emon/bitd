@@ -1,10 +1,14 @@
 import crewTypes, { CrewType } from '@/helpers/crewType';
+import districts, { District } from '@/helpers/district';
+import lairs from '@/helpers/lair';
 import reputationTypes from '@/helpers/reputation';
 import { Crew } from '@/helpers/crew';
 
 export interface RootState {
   title: string;
   crewTypes: CrewType[];
+  districts: District[];
+  lairs: string[];
   reputationTypes: string[];
   crews: Crew[];
 }
@@ -12,6 +16,8 @@ export interface RootState {
 const state: RootState = {
   title: 'Vuetify Admin Dashboard by ClintOxx',
   crewTypes,
+  districts,
+  lairs,
   reputationTypes,
   crews: [
     {
