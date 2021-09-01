@@ -5,58 +5,79 @@
       container--fluid
       grid-list-xl
     >
-      Crew: {{ crew }}
+      Crew: {{ value }}
 
       <v-card width="100%">
+        <v-card-title>{{ value.crewType ? value.crewType.title : '' }}</v-card-title>
         <v-container>
           <v-row>
             <v-col md="6">
               <v-row>
                 <v-col>
                   <v-text-field
+                    :readonly="readonly"
                     label="Название"
+                    :value="value.title"
                   />
                 </v-col>
                 <v-col>
                   <v-text-field
+                    :readonly="readonly"
                     label="Реноме"
+                    :value="value.reputationType"
                   />
                 </v-col>
               </v-row>
               <v-row>
                 <v-col>
                   <v-text-field
+                    :readonly="readonly"
+                    label="Логово"
+                    :value="value.lair"
+                  />
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <v-subheader>Репутация</v-subheader>
+                  <v-rating
+                    :readonly="readonly"
+                    v-model="value.reputation"
+                    length="12"
+                  />
+                </v-col>
+                <v-col>
+                  <v-subheader>Ранг</v-subheader>
+                  <v-rating
+                    :readonly="readonly"
+                    v-model="value.tier"
+                    length="4"
+                  />
+                  <v-subheader>
+                    Контроль: <span>{{ value.hold === 'STRONG' ? 'Сильный' : 'Слабый'}}</span>
+                  </v-subheader>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <v-text-field
+                    :readonly="readonly"
                     label="Логово"
                   />
                 </v-col>
               </v-row>
               <v-row>
                 <v-col>
-                  <v-text-field
-                    label="Репутация"
+                  <v-subheader>Монеты</v-subheader>
+                  <v-rating
+                    :readonly="readonly"
+                    v-model="value.coins"
+                    length="4"
                   />
                 </v-col>
                 <v-col>
                   <v-text-field
-                    label="Ранг"
-                  />
-                </v-col>
-              </v-row>
-              <v-row>
-                <v-col>
-                  <v-text-field
-                    label="Логово"
-                  />
-                </v-col>
-              </v-row>
-              <v-row>
-                <v-col>
-                  <v-text-field
-                    label="Монеты"
-                  />
-                </v-col>
-                <v-col>
-                  <v-text-field
+                    :readonly="readonly"
                     label="Подозрения"
                   />
                 </v-col>
@@ -64,6 +85,7 @@
               <v-row>
                 <v-col>
                   <v-textarea
+                    :readonly="readonly"
                     label="Заметки"
                   />
                 </v-col>
@@ -158,8 +180,11 @@ import { Crew } from '@/helpers/crew';
 
 @Component
 export default class CrewForm extends Vue {
+  @Prop({ default: false })
+  readonly!: boolean;
+
   @Prop()
-  crew!: Crew | null;
+  value!: Crew | null;
 }
 </script>
 

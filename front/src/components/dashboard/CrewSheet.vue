@@ -6,7 +6,7 @@
   >
     <crew-form
       v-if="crew"
-      :crew="crew"
+      v-model="crew"
     />
   </v-container>
 </template>

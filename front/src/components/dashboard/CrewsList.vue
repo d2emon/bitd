@@ -3,11 +3,17 @@
     <v-toolbar dark>
       <v-toolbar-title>Организации</v-toolbar-title>
       <v-spacer />
-      <v-btn
-        icon
-      >
-        <v-icon>mdi-account-multiple-plus</v-icon>
-      </v-btn>
+      <add-crew-modal>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            icon
+            v-bind:attrs="attrs"
+            v-on="on"
+          >
+            <v-icon>mdi-account-multiple-plus</v-icon>
+          </v-btn>
+        </template>
+      </add-crew-modal>
     </v-toolbar>
     <v-list>
       <v-subheader>Банды</v-subheader>
@@ -18,7 +24,7 @@
       >
         <v-list-item-content>
           <v-list-item-title>{{ crew.title }}</v-list-item-title>
-          <v-list-item-subtitle>{{ crew.crewType }}</v-list-item-subtitle>
+          <v-list-item-subtitle>{{ crew.crewType.title }}</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
     </v-list>
@@ -32,6 +38,9 @@ import { mapState } from 'vuex';
 import { Crew } from '@/helpers/crew';
 
 @Component({
+  components: {
+    AddCrewModal: () => import('@/components/modals/AddCrewModal.vue'),
+  },
   computed: {
     ...mapState([
       'crews',
