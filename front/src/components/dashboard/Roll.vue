@@ -89,7 +89,12 @@
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import {mapActions, mapGetters, mapMutations, mapState} from 'vuex';
+import {
+  mapActions,
+  mapGetters,
+  mapMutations,
+  mapState,
+} from 'vuex';
 
 interface RollData {
   id: number;
