@@ -73,12 +73,24 @@ export default class DashboardView extends Vue {
     },
     {
       id: 2,
+      icon: 'mdi-account-multiple',
+      title: 'Команды',
+      link: '/crew',
+    },
+    {
+      id: 3,
+      icon: 'mdi-account',
+      title: 'Персонажи',
+      link: '/character',
+    },
+    {
+      id: 4,
       icon: 'mdi-image',
       title: 'Фотография',
       link: '/2',
     },
     {
-      id: 3,
+      id: 5,
       icon: 'mdi-help-box',
       title: 'Об игре',
       link: '/3',
